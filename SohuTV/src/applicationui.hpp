@@ -34,12 +34,17 @@ class QTranslator;
  *
  * Use this object to create and init app UI, to create context objects, to register the new meta types etc.
  */
-class ApplicationUI : public QObject
+class ApplicationUI: public QObject
 {
     Q_OBJECT
 public:
     ApplicationUI();
-    virtual ~ApplicationUI() {}
+    virtual ~ApplicationUI()
+    {
+    }
+public Q_SLOTS:
+    QString getValue(QString input, QString def);
+    void setValue(QString field, QString value);
 private slots:
     void onSystemLanguageChanged();
 private:

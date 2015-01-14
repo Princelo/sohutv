@@ -17,33 +17,43 @@
 import bb.cascades 1.0
 
 Page {
-    property bool lockedlandscape: false
-    actionBarAutoHideBehavior: ActionBarAutoHideBehavior.HideOnScroll
-    Container {
-        layout: DockLayout {
+    id: rootpage
+    attachedObjects: [
+        LayoutUpdateHandler {
+            onLayoutFrameChanged: {
+                webv.preferredWidth = layoutFrame.width
+            }
+        }
+    ]
+    Menu.definition: MenuDefinition {
+        helpAction: HelpActionItem {
 
         }
-        ImageView {
-            verticalAlignment: VerticalAlignment.Fill
-            horizontalAlignment: HorizontalAlignment.Fill
-            imageSource: "asset:///img/sohu.amd"
-            scalingMethod: ScalingMethod.None
-        }
-        ScrollView {
-            horizontalAlignment: HorizontalAlignment.Fill
-            verticalAlignment: VerticalAlignment.Fill
-            scrollViewProperties.overScrollEffectMode: OverScrollEffectMode.None
-            WebView {
-                id: webv
-                horizontalAlignment: HorizontalAlignment.Fill
-                verticalAlignment: VerticalAlignment.Fill
-                settings.credentialAutoFillEnabled: true
-                settings.formAutoFillEnabled: true
-                url: "http://tv.sohu.com"
-                settings.userAgent: "Mozilla/5.0 (Linux; U; Android 2.3.7; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1"
-                settings.webInspectorEnabled: true
-                settings.userStyleSheetLocation: "patch.css"
+        settingsAction: SettingsActionItem {
+            onTriggered: {
+                var settings = Qt.createComponent("sheet-settings.qml").createObject(rootpage);
+                settings.open();
             }
+        }
+    }
+    property bool lockedlandscape: false
+    actionBarAutoHideBehavior: ActionBarAutoHideBehavior.HideOnScroll
+    ScrollView {
+        horizontalAlignment: HorizontalAlignment.Fill
+        verticalAlignment: VerticalAlignment.Fill
+        scrollViewProperties.overScrollEffectMode: OverScrollEffectMode.None
+        WebView {
+            id: webv
+            minHeight: DisplayInfo.height
+            minWidth: DisplayInfo.width
+            horizontalAlignment: HorizontalAlignment.Fill
+            verticalAlignment: VerticalAlignment.Fill
+            settings.credentialAutoFillEnabled: true
+            settings.formAutoFillEnabled: true
+            url: "http://tv.sohu.com"
+            settings.userAgent: "Mozilla/5.0 (Linux; U; Android 2.3.7; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1"
+            settings.webInspectorEnabled: true
+            settings.userStyleSheetLocation: "patch.css"
         }
     }
     actions: [

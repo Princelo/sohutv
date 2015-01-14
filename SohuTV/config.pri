@@ -4,10 +4,22 @@ BASEDIR = $$quote($$_PRO_FILE_PWD_)
 device {
     CONFIG(debug, debug|release) {
         profile {
+            INCLUDEPATH += $$quote(${QNX_TARGET}/usr/include/bb/device)
+
+            DEPENDPATH += $$quote(${QNX_TARGET}/usr/include/bb/device)
+
+            LIBS += -lbbdevice
+
             CONFIG += \
                 config_pri_assets \
                 config_pri_source_group1
         } else {
+            INCLUDEPATH += $$quote(${QNX_TARGET}/usr/include/bb/device)
+
+            DEPENDPATH += $$quote(${QNX_TARGET}/usr/include/bb/device)
+
+            LIBS += -lbbdevice
+
             CONFIG += \
                 config_pri_assets \
                 config_pri_source_group1
@@ -17,6 +29,12 @@ device {
 
     CONFIG(release, debug|release) {
         !profile {
+            INCLUDEPATH += $$quote(${QNX_TARGET}/usr/include/bb/device)
+
+            DEPENDPATH += $$quote(${QNX_TARGET}/usr/include/bb/device)
+
+            LIBS += -lbbdevice
+
             CONFIG += \
                 config_pri_assets \
                 config_pri_source_group1
@@ -27,6 +45,12 @@ device {
 simulator {
     CONFIG(debug, debug|release) {
         !profile {
+            INCLUDEPATH += $$quote(${QNX_TARGET}/usr/include/bb/device)
+
+            DEPENDPATH += $$quote(${QNX_TARGET}/usr/include/bb/device)
+
+            LIBS += -lbbdevice
+
             CONFIG += \
                 config_pri_assets \
                 config_pri_source_group1
@@ -43,16 +67,22 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/img/sohu.amd) \
         $$quote($$BASEDIR/assets/img/sohu.png) \
         $$quote($$BASEDIR/assets/main.qml) \
-        $$quote($$BASEDIR/assets/patch.css)
+        $$quote($$BASEDIR/assets/patch.css) \
+        $$quote($$BASEDIR/assets/sheet-settings.qml)
 }
 
 config_pri_source_group1 {
     SOURCES += \
+        $$quote($$BASEDIR/src/AppSettings.cpp) \
         $$quote($$BASEDIR/src/applicationui.cpp) \
         $$quote($$BASEDIR/src/main.cpp)
 
-    HEADERS += $$quote($$BASEDIR/src/applicationui.hpp)
+    HEADERS += \
+        $$quote($$BASEDIR/src/AppSettings.hpp) \
+        $$quote($$BASEDIR/src/applicationui.hpp)
 }
+
+INCLUDEPATH += $$quote($$BASEDIR/src)
 
 CONFIG += precompile_header
 

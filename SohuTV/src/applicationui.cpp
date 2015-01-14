@@ -16,10 +16,14 @@
 
 #include "applicationui.hpp"
 
-#include <bb/cascades/Application>
-#include <bb/cascades/QmlDocument>
+#include <bb/cascades/resources/localehandler.h>
+#include <bb/cascades/resources/qmldocument.h>
 #include <bb/cascades/AbstractPane>
+#include <bb/cascades/Application>
 #include <bb/cascades/LocaleHandler>
+#include <bb/cascades/QmlDocument>
+#include "bb/device/DisplayInfo.hpp"
+#include "AppSettings.hpp"
 
 using namespace bb::cascades;
 
@@ -29,12 +33,9 @@ ApplicationUI::ApplicationUI() :
     // prepare the localization
     m_pTranslator = new QTranslator(this);
     m_pLocaleHandler = new LocaleHandler(this);
-
-    bool res = QObject::connect(m_pLocaleHandler, SIGNAL(systemLanguageChanged()), this, SLOT(onSystemLanguageChanged()));
-    // This is only available in Debug builds
+    bool res = QObject::connect(m_pLocaleHandler, SIGNAL(systemLanguageChanged()), this,
+            SLOT(onSystemLanguageChanged()));
     Q_ASSERT(res);
-    // Since the variable is not used in the app, this is added to avoid a
-    // compiler warning
     Q_UNUSED(res);
 
     // initial load
@@ -43,7 +44,15 @@ ApplicationUI::ApplicationUI() :
     // Create scene document from main.qml asset, the parent is set
     // to ensure the document gets destroyed properly at shut down.
     QmlDocument *qml = QmlDocument::create("asset:///main.qml").parent(this);
+    bb::device::DisplayInfo display;
+    int width = display.pixelSize().width();
+    int height = display.pixelSize().height();
 
+    QDeclarativePropertyMap* displayProperties = new QDeclarativePropertyMap;
+    displayProperties->insert("width", QVariant(width));
+    displayProperties->insert("height", QVariant(height));
+    qml->setContextProperty("DisplayInfo", displayProperties);
+    qml->setContextProperty("_app", this);
     // Create root object for the UI
     AbstractPane *root = qml->createRootObject<AbstractPane>();
 
@@ -61,3 +70,15 @@ void ApplicationUI::onSystemLanguageChanged()
         QCoreApplication::instance()->installTranslator(m_pTranslator);
     }
 }
+
+void ApplicationUI::setValue(QString field, QString input)
+{
+    AppSettings::saveValueFor(field, input);
+}
+
+QString ApplicationUI::getValue(QString input, QString def)
+{
+    QString result = AppSettings::getValueFor(input, def);
+    return result;
+}
+
