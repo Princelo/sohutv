@@ -1,5 +1,5 @@
 1
-9
+10
 img/back.png
 img/forward.png
 img/home.png
@@ -7,5 +7,6 @@ img/landscape.png
 img/sohu.amd
 img/sohu.png
 main.qml
+page-settings.qml
 patch.css
-sheet-settings.qml
+patch.js

@@ -67,8 +67,9 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/img/sohu.amd) \
         $$quote($$BASEDIR/assets/img/sohu.png) \
         $$quote($$BASEDIR/assets/main.qml) \
+        $$quote($$BASEDIR/assets/page-settings.qml) \
         $$quote($$BASEDIR/assets/patch.css) \
-        $$quote($$BASEDIR/assets/sheet-settings.qml)
+        $$quote($$BASEDIR/assets/patch.js)
 }
 
 config_pri_source_group1 {

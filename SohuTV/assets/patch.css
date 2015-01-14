@@ -1,7 +1,7 @@
 /*
 * Avoid AD
 */
-.js_sh_app_dl_index , .links , #splash_container , .js_sh_app_dl , .share_button , .hots_pinner{
+.js_sh_app_dl_index , .links , #splash_container , .js_sh_app_dl , .share_button , .hots_pinner , .appdl_download2 , .appbar{
 	display: none !important
 }
 
@@ -11,4 +11,9 @@
 body {
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
+}
+
+:-webkit-full-screen {
+  /* properties */
+	
 }

@@ -1,0 +1,1 @@
+document.onwebkitfullscreenchange = function() {	document.webkitCancelFullScreen();}
