@@ -29,7 +29,38 @@ NavigationPane {
             }
         }
     }
-
+    attachedObjects: [
+        Bookmarks {
+            id: b
+            function save() {
+                _app.setValue("bookmark", exp());
+            }
+            function load() {
+                reload(_app.getValue("bookmark", ""))
+            }
+        },
+        Bookmarks {
+            id: h
+            function save() {
+                _app.setValue("history", exp());
+            }
+            function load() {
+                reload(_app.getValue("history", ""))
+            }
+        }
+    ]
+    onCreationCompleted: {
+        b.load();
+        h.load();
+        webv.loadingChanged.connect(syncbookmark)
+    }
+    function syncbookmark() {
+        if (b.exists(webv.url)) {
+            actionbookmark.imageSource = "asset:///img/star3.png";
+        } else {
+            actionbookmark.imageSource = "asset:///img/star1.png";
+        }
+    }
     Page {
         id: rootpage
         actionBarAutoHideBehavior: ActionBarAutoHideBehavior.HideOnScroll
@@ -39,22 +70,19 @@ NavigationPane {
             scrollViewProperties.overScrollEffectMode: OverScrollEffectMode.None
             WebView {
                 id: webv
-                minHeight: DisplayInfo.height
-                minWidth: DisplayInfo.width
                 horizontalAlignment: HorizontalAlignment.Fill
                 verticalAlignment: VerticalAlignment.Fill
                 settings.credentialAutoFillEnabled: true
                 settings.formAutoFillEnabled: true
                 url: "http://m.tv.sohu.com"
-//                settings.userAgent: "Mozilla/5.0 (Linux; U; Android 2.3.7; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1"
-                settings.userAgent:"Mozilla/5.0 (Linux; Android 4.1.1; Nexus 7 Build/JRO03S) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Safari/535.19"
+                settings.userAgent: "Mozilla/5.0 (Linux; Android 4.1.1; Nexus 7 Build/JRO03S) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Safari/535.19"
                 settings.webInspectorEnabled: true
                 settings.userStyleSheetLocation: "patch.css"
                 onNavigationRequested: {
-                    
                 }
                 onLoadingChanged: {
-                    if (!loading){
+                    if (! loading) {
+                        h.add(title, url);
                     }
                 }
             }
@@ -66,6 +94,7 @@ NavigationPane {
                 }
             ]
             scrollRole: ScrollRole.Main
+            scrollViewProperties.scrollRailsPolicy: ScrollRailsPolicy.None
         }
         actions: [
             ActionItem {
@@ -88,6 +117,16 @@ NavigationPane {
                     }
                 }
                 imageSource: "asset:///img/home.png"
+            },
+            ActionItem {
+                id: actionbookmark
+                title: qsTr("Bookmark")
+                imageSource: "asset:///img/star1.png"
+                ActionBar.placement: ActionBarPlacement.OnBar
+                onTriggered: {
+                    b.toggle(webv.title, webv.url);
+                    syncbookmark();
+                }
             },
             ActionItem {
                 title: qsTr("Forward")

@@ -4,24 +4,29 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../assets/main.qml" line="72"/>
+        <location filename="../assets/main.qml" line="101"/>
         <source>Back</source>
-        <translation>后退</translation>
+        <translation type="unfinished">后退</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="81"/>
+        <location filename="../assets/main.qml" line="110"/>
         <source>Home</source>
-        <translation>主页</translation>
+        <translation type="unfinished">主页</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="93"/>
+        <location filename="../assets/main.qml" line="123"/>
+        <source>Bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/main.qml" line="132"/>
         <source>Forward</source>
-        <translation>前进</translation>
+        <translation type="unfinished">前进</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="102"/>
+        <location filename="../assets/main.qml" line="141"/>
         <source>Toggle Landscape Lock</source>
-        <translation>锁定横屏</translation>
+        <translation type="unfinished">锁定横屏</translation>
     </message>
 </context>
 <context>

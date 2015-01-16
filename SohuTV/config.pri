@@ -60,12 +60,17 @@ simulator {
 
 config_pri_assets {
     OTHER_FILES += \
+        $$quote($$BASEDIR/assets/Bookmarks.qml) \
         $$quote($$BASEDIR/assets/img/back.png) \
         $$quote($$BASEDIR/assets/img/forward.png) \
+        $$quote($$BASEDIR/assets/img/history.png) \
         $$quote($$BASEDIR/assets/img/home.png) \
         $$quote($$BASEDIR/assets/img/landscape.png) \
         $$quote($$BASEDIR/assets/img/sohu.amd) \
         $$quote($$BASEDIR/assets/img/sohu.png) \
+        $$quote($$BASEDIR/assets/img/star1.png) \
+        $$quote($$BASEDIR/assets/img/star2.png) \
+        $$quote($$BASEDIR/assets/img/star3.png) \
         $$quote($$BASEDIR/assets/main.qml) \
         $$quote($$BASEDIR/assets/page-settings.qml) \
         $$quote($$BASEDIR/assets/patch.css) \
@@ -82,8 +87,6 @@ config_pri_source_group1 {
         $$quote($$BASEDIR/src/AppSettings.hpp) \
         $$quote($$BASEDIR/src/applicationui.hpp)
 }
-
-INCLUDEPATH += $$quote($$BASEDIR/src)
 
 CONFIG += precompile_header
 
