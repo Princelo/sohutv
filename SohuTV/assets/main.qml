@@ -30,32 +30,22 @@ NavigationPane {
         }
     }
     attachedObjects: [
-        Bookmarks {
-            id: b
-            function save() {
-                _app.setValue("bookmark", exp());
+        Storage {
+            id: bookmark
+            onDatachanged: {
+                console.log(serialize())
+                _app.setValue("bookmark", serialize());
             }
-            function load() {
-                reload(_app.getValue("bookmark", ""))
-            }
-        },
-        Bookmarks {
-            id: h
-            function save() {
-                _app.setValue("history", exp());
-            }
-            function load() {
-                reload(_app.getValue("history", ""))
+            onCreationCompleted: {
+                load(_app.getValue("bookmark", ""));
             }
         }
     ]
     onCreationCompleted: {
-        b.load();
-        h.load();
         webv.loadingChanged.connect(syncbookmark)
     }
     function syncbookmark() {
-        if (b.exists(webv.url)) {
+        if (bookmark.exists(webv.url)) {
             actionbookmark.imageSource = "asset:///img/star3.png";
         } else {
             actionbookmark.imageSource = "asset:///img/star1.png";
@@ -79,11 +69,6 @@ NavigationPane {
                 settings.webInspectorEnabled: true
                 settings.userStyleSheetLocation: "patch.css"
                 onNavigationRequested: {
-                }
-                onLoadingChanged: {
-                    if (! loading) {
-                        h.add(title, url);
-                    }
                 }
             }
             attachedObjects: [
@@ -124,7 +109,7 @@ NavigationPane {
                 imageSource: "asset:///img/star1.png"
                 ActionBar.placement: ActionBarPlacement.OnBar
                 onTriggered: {
-                    b.toggle(webv.title, webv.url);
+                    bookmark.toggle(webv.title, webv.url.toString());
                     syncbookmark();
                 }
             },

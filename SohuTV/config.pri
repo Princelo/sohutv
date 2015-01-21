@@ -60,7 +60,7 @@ simulator {
 
 config_pri_assets {
     OTHER_FILES += \
-        $$quote($$BASEDIR/assets/Bookmarks.qml) \
+        $$quote($$BASEDIR/assets/Storage.qml) \
         $$quote($$BASEDIR/assets/img/back.png) \
         $$quote($$BASEDIR/assets/img/forward.png) \
         $$quote($$BASEDIR/assets/img/history.png) \
