@@ -15,12 +15,18 @@
  */
 
 import bb.cascades 1.0
+import bb.system 1.0
+
 NavigationPane {
     id: navpane
     property bool lockedlandscape: false
+    property bool actionbarhidden: false
     Menu.definition: MenuDefinition {
         helpAction: HelpActionItem {
-
+            onTriggered: {
+                var help = Qt.createComponent("page-help.qml").createObject(navpane)
+                navpane.push(help);
+            }
         }
         settingsAction: SettingsActionItem {
             onTriggered: {
@@ -28,6 +34,9 @@ NavigationPane {
                 navpane.push(settings);
             }
         }
+    }
+    onPopTransitionEnded: {
+        page.destroy()
     }
     attachedObjects: [
         Storage {
@@ -60,12 +69,14 @@ NavigationPane {
             scrollViewProperties.overScrollEffectMode: OverScrollEffectMode.None
             WebView {
                 id: webv
+                preferredHeight: Infinity
                 horizontalAlignment: HorizontalAlignment.Fill
                 verticalAlignment: VerticalAlignment.Fill
                 settings.credentialAutoFillEnabled: true
                 settings.formAutoFillEnabled: true
                 url: "http://m.tv.sohu.com"
                 settings.userAgent: "Mozilla/5.0 (Linux; Android 4.1.1; Nexus 7 Build/JRO03S) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Safari/535.19"
+//                settings.userAgent: "Mozilla/5.0 (Linux; U; Android 3.0; en-us; Xoom Build/HRI39) AppleWebKit/534.13 (KHTML, like Gecko) Version/4.0 Safari/534.13"
                 settings.webInspectorEnabled: true
                 settings.userStyleSheetLocation: "patch.css"
                 onNavigationRequested: {
@@ -78,8 +89,18 @@ NavigationPane {
                     }
                 }
             ]
-            scrollRole: ScrollRole.Main
-            scrollViewProperties.scrollRailsPolicy: ScrollRailsPolicy.None
+            gestureHandlers: [
+                DoubleTapHandler {
+                    onDoubleTapped: {
+                        if (actionbarhidden) {
+                            rootpage.actionBarVisibility = ChromeVisibility.Default
+                        } else {
+                            rootpage.actionBarVisibility = ChromeVisibility.Hidden
+                        }
+                        actionbarhidden = ! actionbarhidden
+                    }
+                }
+            ]
         }
         actions: [
             ActionItem {
@@ -135,8 +156,39 @@ NavigationPane {
                 }
                 ActionBar.placement: ActionBarPlacement.InOverflow
                 imageSource: "asset:///img/landscape.png"
+            },
+            ActionItem {
+                title: qsTr("Hide Action Bar")
+                imageSource: "asset:///img/full.png"
+                ActionBar.placement: ActionBarPlacement.InOverflow
+                onTriggered: {
+                    sst.show();
+                    rootpage.actionBarVisibility = ChromeVisibility.Hidden
+                    actionbarhidden = true;
+                }
+                attachedObjects: [
+                    SystemToast {
+                        id: sst
+                        body: qsTr("Double Tap to toggle action-bar visibility.")
+                    }
+                ]
+            },
+            ActionItem {
+                title: qsTr("Clean Cache")
+                ActionBar.placement: ActionBarPlacement.InOverflow
+                onTriggered: {
+                    webv.storage.clear();
+                    cleared.show()
+                }
+                attachedObjects: [
+                    SystemToast {
+                        id: cleared
+                        body: qsTr("Cache cleared.")
+                    }
+                ]
             }
         ]
+        actionBarVisibility: ChromeVisibility.Default
     }
 
 }

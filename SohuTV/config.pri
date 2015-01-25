@@ -63,6 +63,7 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/Storage.qml) \
         $$quote($$BASEDIR/assets/img/back.png) \
         $$quote($$BASEDIR/assets/img/forward.png) \
+        $$quote($$BASEDIR/assets/img/full.png) \
         $$quote($$BASEDIR/assets/img/history.png) \
         $$quote($$BASEDIR/assets/img/home.png) \
         $$quote($$BASEDIR/assets/img/landscape.png) \
@@ -72,6 +73,7 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/img/star2.png) \
         $$quote($$BASEDIR/assets/img/star3.png) \
         $$quote($$BASEDIR/assets/main.qml) \
+        $$quote($$BASEDIR/assets/page-help.qml) \
         $$quote($$BASEDIR/assets/page-settings.qml) \
         $$quote($$BASEDIR/assets/patch.css) \
         $$quote($$BASEDIR/assets/patch.js)

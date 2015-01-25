@@ -1,7 +1,7 @@
 /*
 * Avoid AD
 */
-.js_sh_app_dl_index , .links , #splash_container , .js_sh_app_dl , .share_button , .hots_pinner , .appdl_download2 , .appbar{
+.js_sh_app_dl_index ,.recommend_app, .hots_app_more, .links , #splash_container , .js_sh_app_dl , .share_button , .hots_pinner , .appdl_download2 , .appbar{
 	display: none !important
 }
 

@@ -24,7 +24,7 @@
 #include <bb/cascades/QmlDocument>
 #include "bb/device/DisplayInfo.hpp"
 #include "AppSettings.hpp"
-
+#include <bb/system/SystemToast>
 using namespace bb::cascades;
 
 ApplicationUI::ApplicationUI() :
@@ -82,3 +82,54 @@ QString ApplicationUI::getValue(QString input, QString def)
     return result;
 }
 
+
+QString ApplicationUI::cacheSize()
+{
+    QDir dir;
+    QString dataDir(QDir::homePath());
+    QString dirName = dataDir + "/cache/";
+    dir.cd(dirName);
+    qDebug() << QString::number(dir_size(dirName));
+    return QString::number(dir_size(dirName));
+}
+
+quint64 ApplicationUI::dir_size(const QString & str)
+{
+    quint64 sizex = 0;
+    QFileInfo str_info(str);
+    if (str_info.isDir()) {
+        QDir dir(str);
+        QFileInfoList list = dir.entryInfoList(
+                QDir::Files | QDir::Dirs | QDir::Hidden | QDir::NoSymLinks | QDir::NoDotAndDotDot);
+        for (int i = 0; i < list.size(); ++i) {
+            QFileInfo fileInfo = list.at(i);
+            if (fileInfo.isDir()) {
+                sizex += dir_size(fileInfo.absoluteFilePath());
+            } else
+                sizex += fileInfo.size();
+
+        }
+    }
+    return sizex;
+}
+void ApplicationUI::clearCache()
+{
+    QDir dir;
+    QString dataDir(QDir::homePath());
+    QString dirName = dataDir + "/cache/";
+    dir.cd(dirName);
+
+    QStringList list = dir.entryList();
+
+    foreach (const QString &str, list){
+    QFile theFile(dirName+str);
+    qDebug()<<QFileInfo(dirName+str).size();
+    theFile.remove();
+    QFileInfo(theFile).size();
+    qDebug()<<dirName+str;
+}
+    bb::system::SystemToast *toast = new bb::system::SystemToast(this);
+    toast->setBody(tr("Cache cleared"));
+    toast->setPosition(bb::system::SystemUiPosition::MiddleCenter);
+    toast->show();
+}

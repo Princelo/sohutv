@@ -45,6 +45,9 @@ public:
 public Q_SLOTS:
     QString getValue(QString input, QString def);
     void setValue(QString field, QString value);
+    Q_INVOKABLE QString cacheSize();
+    Q_INVOKABLE void clearCache();
+    quint64 dir_size(const QString & str);
 private slots:
     void onSystemLanguageChanged();
 private:
