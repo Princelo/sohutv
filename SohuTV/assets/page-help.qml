@@ -6,9 +6,12 @@ Page {
             id: ai
         }
     ]
+    property string email: qsTr("Email")
+    actionBarAutoHideBehavior: ActionBarAutoHideBehavior.HideOnScroll
+    actionBarVisibility: ChromeVisibility.Default
     ScrollView {
         horizontalAlignment: HorizontalAlignment.Fill
-         Container {
+        Container {
             Header {
                 title: qsTr("About")
                 subtitle: qsTr("Ver:") + ai.version
@@ -16,18 +19,25 @@ Page {
             ImageView {
                 imageSource: "asset:///img/sohu.amd"
                 horizontalAlignment: HorizontalAlignment.Center
+                topMargin: 50.0
             }
             Label {
                 horizontalAlignment: HorizontalAlignment.Center
                 text: ai.title
             }
             Header {
-                title: qsTr("Author")
+                title: qsTr("Author List")
             }
-            Label {
-                text: qsTr("Merrick Zhang. You can contact me via <a href=\"mailto:anphorea@gmail.com\">Email</a>")
-                multiline: true
-                textFormat: TextFormat.Html
+            Container {
+                horizontalAlignment: HorizontalAlignment.Fill
+                leftPadding: 20.0
+                rightPadding: 20.0
+                topPadding: 20.0
+                Label {
+                    text: qsTr("Merrick Zhang, Programmer.") + "<a href=\"mailto:anphorea@gmail.com?subject=[SOHUTV]" + ai.version + "\">" + email + "</a>"
+                    multiline: true
+                    textFormat: TextFormat.Html
+                }
             }
         }
     }

@@ -19,6 +19,9 @@ import bb.system 1.0
 
 NavigationPane {
     id: navpane
+    function navto(str){
+        webv.url=str;
+    }
     property bool lockedlandscape: false
     property bool actionbarhidden: false
     Menu.definition: MenuDefinition {
@@ -34,6 +37,20 @@ NavigationPane {
                 navpane.push(settings);
             }
         }
+        actions: [
+            ActionItem {
+                title: qsTr("Bookmarks")
+                onTriggered: {
+                    bkm.createObject().open();
+                }
+                attachedObjects: [
+                    ComponentDefinition {
+                        source: "sheet-bookmarks.qml"
+                        id: bkm
+                    }
+                ]
+            }
+        ]
     }
     onPopTransitionEnded: {
         page.destroy()
@@ -76,7 +93,6 @@ NavigationPane {
                 settings.formAutoFillEnabled: true
                 url: "http://m.tv.sohu.com"
                 settings.userAgent: "Mozilla/5.0 (Linux; Android 4.1.1; Nexus 7 Build/JRO03S) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Safari/535.19"
-//                settings.userAgent: "Mozilla/5.0 (Linux; U; Android 3.0; en-us; Xoom Build/HRI39) AppleWebKit/534.13 (KHTML, like Gecko) Version/4.0 Safari/534.13"
                 settings.webInspectorEnabled: true
                 settings.userStyleSheetLocation: "patch.css"
                 onNavigationRequested: {

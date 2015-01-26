@@ -1,10 +1,11 @@
 1
-17
+19
 img/back.png
 img/forward.png
 img/full.png
 img/history.png
 img/home.png
+img/ic_email_dk.png
 img/landscape.png
 img/sohu.amd
 img/sohu.png
@@ -16,4 +17,5 @@ page-help.qml
 page-settings.qml
 patch.css
 patch.js
+sheet-bookmarks.qml
 Storage.qml

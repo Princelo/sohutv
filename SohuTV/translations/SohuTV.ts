@@ -12,47 +12,52 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../assets/main.qml" line="107"/>
+        <location filename="../assets/main.qml" line="42"/>
+        <source>Bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/main.qml" line="123"/>
         <source>Back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="116"/>
+        <location filename="../assets/main.qml" line="132"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="129"/>
+        <location filename="../assets/main.qml" line="145"/>
         <source>Bookmark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="138"/>
+        <location filename="../assets/main.qml" line="154"/>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="147"/>
+        <location filename="../assets/main.qml" line="163"/>
         <source>Toggle Landscape Lock</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="161"/>
+        <location filename="../assets/main.qml" line="177"/>
         <source>Hide Action Bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="172"/>
+        <location filename="../assets/main.qml" line="188"/>
         <source>Double Tap to toggle action-bar visibility.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="177"/>
+        <location filename="../assets/main.qml" line="193"/>
         <source>Clean Cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="186"/>
+        <location filename="../assets/main.qml" line="202"/>
         <source>Cache cleared.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -60,23 +65,28 @@
 <context>
     <name>page-help</name>
     <message>
-        <location filename="../assets/page-help.qml" line="13"/>
+        <location filename="../assets/page-help.qml" line="9"/>
+        <source>Email</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/page-help.qml" line="16"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/page-help.qml" line="14"/>
+        <location filename="../assets/page-help.qml" line="17"/>
         <source>Ver:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/page-help.qml" line="25"/>
-        <source>Author</source>
+        <location filename="../assets/page-help.qml" line="29"/>
+        <source>Author List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/page-help.qml" line="28"/>
-        <source>Merrick Zhang. You can contact me via &lt;a href=&quot;mailto:anphorea@gmail.com&quot;&gt;Email&lt;/a&gt;</source>
+        <location filename="../assets/page-help.qml" line="37"/>
+        <source>Merrick Zhang, Programmer.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -100,6 +110,19 @@
     <message>
         <location filename="../assets/page-settings.qml" line="46"/>
         <source>Changing theme requires app restart.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>sheet-bookmarks</name>
+    <message>
+        <location filename="../assets/sheet-bookmarks.qml" line="7"/>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/sheet-bookmarks.qml" line="55"/>
+        <source>Bookmarks</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -66,6 +66,7 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/img/full.png) \
         $$quote($$BASEDIR/assets/img/history.png) \
         $$quote($$BASEDIR/assets/img/home.png) \
+        $$quote($$BASEDIR/assets/img/ic_email_dk.png) \
         $$quote($$BASEDIR/assets/img/landscape.png) \
         $$quote($$BASEDIR/assets/img/sohu.amd) \
         $$quote($$BASEDIR/assets/img/sohu.png) \
@@ -76,7 +77,8 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/page-help.qml) \
         $$quote($$BASEDIR/assets/page-settings.qml) \
         $$quote($$BASEDIR/assets/patch.css) \
-        $$quote($$BASEDIR/assets/patch.js)
+        $$quote($$BASEDIR/assets/patch.js) \
+        $$quote($$BASEDIR/assets/sheet-bookmarks.qml)
 }
 
 config_pri_source_group1 {
