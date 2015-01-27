@@ -12,54 +12,57 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../assets/main.qml" line="42"/>
         <source>Bookmarks</source>
-        <translation>书签</translation>
+        <translation type="obsolete">书签</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="123"/>
+        <location filename="../assets/main.qml" line="151"/>
         <source>Back</source>
         <translation>后退</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="132"/>
+        <location filename="../assets/main.qml" line="160"/>
         <source>Home</source>
         <translation>主页</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="145"/>
         <source>Bookmark</source>
-        <translation>书签</translation>
+        <translation type="obsolete">书签</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="154"/>
+        <location filename="../assets/main.qml" line="182"/>
         <source>Forward</source>
         <translation>前进</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="163"/>
+        <location filename="../assets/main.qml" line="191"/>
         <source>Toggle Landscape Lock</source>
         <translation>锁定横屏</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="177"/>
+        <location filename="../assets/main.qml" line="205"/>
         <source>Hide Action Bar</source>
         <translation>隐藏动作栏</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="188"/>
+        <location filename="../assets/main.qml" line="217"/>
         <source>Double Tap to toggle action-bar visibility.</source>
         <translation>双击屏幕来显示、隐藏动作栏。</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="193"/>
+        <location filename="../assets/main.qml" line="222"/>
         <source>Clean Cache</source>
         <translation>清空缓存</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="202"/>
+        <location filename="../assets/main.qml" line="231"/>
         <source>Cache cleared.</source>
         <translation>缓存已清除。</translation>
+    </message>
+    <message>
+        <location filename="../assets/main.qml" line="237"/>
+        <source>URL</source>
+        <translation>地址栏</translation>
     </message>
 </context>
 <context>
@@ -121,7 +124,7 @@
         <translation>后退</translation>
     </message>
     <message>
-        <location filename="../assets/sheet-bookmarks.qml" line="55"/>
+        <location filename="../assets/sheet-bookmarks.qml" line="53"/>
         <source>Bookmarks</source>
         <translation>书签</translation>
     </message>

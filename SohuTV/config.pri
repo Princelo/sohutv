@@ -60,14 +60,128 @@ simulator {
 
 config_pri_assets {
     OTHER_FILES += \
+        $$quote($$BASEDIR/assets/Ctrl-Listline.qml) \
         $$quote($$BASEDIR/assets/Storage.qml) \
+        $$quote($$BASEDIR/assets/img/A.png) \
         $$quote($$BASEDIR/assets/img/back.png) \
         $$quote($$BASEDIR/assets/img/forward.png) \
         $$quote($$BASEDIR/assets/img/full.png) \
         $$quote($$BASEDIR/assets/img/history.png) \
         $$quote($$BASEDIR/assets/img/home.png) \
+        $$quote($$BASEDIR/assets/img/ic_add.png) \
+        $$quote($$BASEDIR/assets/img/ic_add_bookmarks.png) \
+        $$quote($$BASEDIR/assets/img/ic_add_folder.png) \
+        $$quote($$BASEDIR/assets/img/ic_add_to_contacts.png) \
+        $$quote($$BASEDIR/assets/img/ic_all.png) \
+        $$quote($$BASEDIR/assets/img/ic_attach.png) \
+        $$quote($$BASEDIR/assets/img/ic_bbm.png) \
+        $$quote($$BASEDIR/assets/img/ic_browser.png) \
+        $$quote($$BASEDIR/assets/img/ic_buy.png) \
+        $$quote($$BASEDIR/assets/img/ic_camera.png) \
+        $$quote($$BASEDIR/assets/img/ic_cancel.png) \
+        $$quote($$BASEDIR/assets/img/ic_cancel_selection.png) \
+        $$quote($$BASEDIR/assets/img/ic_check_spell.png) \
+        $$quote($$BASEDIR/assets/img/ic_clear.png) \
+        $$quote($$BASEDIR/assets/img/ic_clear_list.png) \
+        $$quote($$BASEDIR/assets/img/ic_code_inspector.png) \
+        $$quote($$BASEDIR/assets/img/ic_collapse.png) \
+        $$quote($$BASEDIR/assets/img/ic_compose.png) \
+        $$quote($$BASEDIR/assets/img/ic_contact.png) \
+        $$quote($$BASEDIR/assets/img/ic_copy.png) \
+        $$quote($$BASEDIR/assets/img/ic_copy_link.png) \
+        $$quote($$BASEDIR/assets/img/ic_copy_link_image.png) \
+        $$quote($$BASEDIR/assets/img/ic_copy_password.png) \
+        $$quote($$BASEDIR/assets/img/ic_cut.png) \
+        $$quote($$BASEDIR/assets/img/ic_decrease.png) \
+        $$quote($$BASEDIR/assets/img/ic_delete.png) \
+        $$quote($$BASEDIR/assets/img/ic_delete_prior.png) \
+        $$quote($$BASEDIR/assets/img/ic_deselect.png) \
+        $$quote($$BASEDIR/assets/img/ic_deselect_all.png) \
+        $$quote($$BASEDIR/assets/img/ic_diagnostics.png) \
+        $$quote($$BASEDIR/assets/img/ic_disable.png) \
+        $$quote($$BASEDIR/assets/img/ic_doctype_doc.png) \
+        $$quote($$BASEDIR/assets/img/ic_doctype_generic.png) \
+        $$quote($$BASEDIR/assets/img/ic_doctype_music.png) \
+        $$quote($$BASEDIR/assets/img/ic_doctype_pdf.png) \
+        $$quote($$BASEDIR/assets/img/ic_doctype_picture.png) \
+        $$quote($$BASEDIR/assets/img/ic_doctype_ppt.png) \
+        $$quote($$BASEDIR/assets/img/ic_doctype_video.png) \
+        $$quote($$BASEDIR/assets/img/ic_doctype_web.png) \
+        $$quote($$BASEDIR/assets/img/ic_doctype_xls.png) \
+        $$quote($$BASEDIR/assets/img/ic_doctype_zip.png) \
+        $$quote($$BASEDIR/assets/img/ic_done.png) \
+        $$quote($$BASEDIR/assets/img/ic_download.png) \
+        $$quote($$BASEDIR/assets/img/ic_edit.png) \
+        $$quote($$BASEDIR/assets/img/ic_edit_bookmarks.png) \
+        $$quote($$BASEDIR/assets/img/ic_edit_list.png) \
+        $$quote($$BASEDIR/assets/img/ic_edit_profile.png) \
         $$quote($$BASEDIR/assets/img/ic_email_dk.png) \
+        $$quote($$BASEDIR/assets/img/ic_enable.png) \
+        $$quote($$BASEDIR/assets/img/ic_entry.png) \
+        $$quote($$BASEDIR/assets/img/ic_expand.png) \
+        $$quote($$BASEDIR/assets/img/ic_favorite.png) \
+        $$quote($$BASEDIR/assets/img/ic_feedback.png) \
+        $$quote($$BASEDIR/assets/img/ic_forward.png) \
+        $$quote($$BASEDIR/assets/img/ic_help.png) \
+        $$quote($$BASEDIR/assets/img/ic_history.png) \
+        $$quote($$BASEDIR/assets/img/ic_home.png) \
+        $$quote($$BASEDIR/assets/img/ic_increase.png) \
+        $$quote($$BASEDIR/assets/img/ic_info.png) \
+        $$quote($$BASEDIR/assets/img/ic_location.png) \
+        $$quote($$BASEDIR/assets/img/ic_lock.png) \
+        $$quote($$BASEDIR/assets/img/ic_map.png) \
+        $$quote($$BASEDIR/assets/img/ic_microphone.png) \
+        $$quote($$BASEDIR/assets/img/ic_microphone_mute.png) \
+        $$quote($$BASEDIR/assets/img/ic_move.png) \
+        $$quote($$BASEDIR/assets/img/ic_nav_to.png) \
+        $$quote($$BASEDIR/assets/img/ic_next.png) \
+        $$quote($$BASEDIR/assets/img/ic_notes.png) \
+        $$quote($$BASEDIR/assets/img/ic_notification.png) \
+        $$quote($$BASEDIR/assets/img/ic_open.png) \
+        $$quote($$BASEDIR/assets/img/ic_open_link.png) \
+        $$quote($$BASEDIR/assets/img/ic_overflow_action.png) \
+        $$quote($$BASEDIR/assets/img/ic_overflow_tab.png) \
+        $$quote($$BASEDIR/assets/img/ic_paste.png) \
+        $$quote($$BASEDIR/assets/img/ic_pause.png) \
+        $$quote($$BASEDIR/assets/img/ic_phone.png) \
+        $$quote($$BASEDIR/assets/img/ic_play.png) \
+        $$quote($$BASEDIR/assets/img/ic_previous.png) \
+        $$quote($$BASEDIR/assets/img/ic_properties.png) \
+        $$quote($$BASEDIR/assets/img/ic_reload.png) \
+        $$quote($$BASEDIR/assets/img/ic_rename.png) \
+        $$quote($$BASEDIR/assets/img/ic_reply.png) \
+        $$quote($$BASEDIR/assets/img/ic_reply_all.png) \
+        $$quote($$BASEDIR/assets/img/ic_resume.png) \
+        $$quote($$BASEDIR/assets/img/ic_save.png) \
+        $$quote($$BASEDIR/assets/img/ic_save_as.png) \
+        $$quote($$BASEDIR/assets/img/ic_scan_barcode.png) \
+        $$quote($$BASEDIR/assets/img/ic_search.png) \
+        $$quote($$BASEDIR/assets/img/ic_select.png) \
+        $$quote($$BASEDIR/assets/img/ic_select_all.png) \
+        $$quote($$BASEDIR/assets/img/ic_select_more.png) \
+        $$quote($$BASEDIR/assets/img/ic_select_text.png) \
+        $$quote($$BASEDIR/assets/img/ic_set_as_default.png) \
+        $$quote($$BASEDIR/assets/img/ic_settings.png) \
+        $$quote($$BASEDIR/assets/img/ic_share.png) \
+        $$quote($$BASEDIR/assets/img/ic_show_dialpad.png) \
+        $$quote($$BASEDIR/assets/img/ic_show_vkb.png) \
+        $$quote($$BASEDIR/assets/img/ic_sort.png) \
+        $$quote($$BASEDIR/assets/img/ic_speaker_dk.png) \
+        $$quote($$BASEDIR/assets/img/ic_speaker_mute.png) \
+        $$quote($$BASEDIR/assets/img/ic_stop.png) \
+        $$quote($$BASEDIR/assets/img/ic_textmessage_dk.png) \
+        $$quote($$BASEDIR/assets/img/ic_to_bottom.png) \
+        $$quote($$BASEDIR/assets/img/ic_to_top.png) \
+        $$quote($$BASEDIR/assets/img/ic_view_details_dk.png) \
+        $$quote($$BASEDIR/assets/img/ic_view_grid.png) \
+        $$quote($$BASEDIR/assets/img/ic_view_image.png) \
+        $$quote($$BASEDIR/assets/img/ic_view_list.png) \
+        $$quote($$BASEDIR/assets/img/ic_view_post.png) \
+        $$quote($$BASEDIR/assets/img/ic_zoom_in.png) \
+        $$quote($$BASEDIR/assets/img/ic_zoom_out.png) \
         $$quote($$BASEDIR/assets/img/landscape.png) \
+        $$quote($$BASEDIR/assets/img/max.png) \
+        $$quote($$BASEDIR/assets/img/nav.png) \
         $$quote($$BASEDIR/assets/img/sohu.amd) \
         $$quote($$BASEDIR/assets/img/sohu.png) \
         $$quote($$BASEDIR/assets/img/star1.png) \

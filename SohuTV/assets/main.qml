@@ -19,11 +19,12 @@ import bb.system 1.0
 
 NavigationPane {
     id: navpane
-    function navto(str){
-        webv.url=str;
+    function navto(str) {
+        webv.url = str;
     }
     property bool lockedlandscape: false
     property bool actionbarhidden: false
+    property bool urlboxvisible: false
     Menu.definition: MenuDefinition {
         helpAction: HelpActionItem {
             onTriggered: {
@@ -37,20 +38,20 @@ NavigationPane {
                 navpane.push(settings);
             }
         }
-        actions: [
-            ActionItem {
-                title: qsTr("Bookmarks")
-                onTriggered: {
-                    bkm.createObject().open();
-                }
-                attachedObjects: [
-                    ComponentDefinition {
-                        source: "sheet-bookmarks.qml"
-                        id: bkm
-                    }
-                ]
-            }
-        ]
+        //        actions: [
+        //            ActionItem {
+        //                title: qsTr("Bookmarks")
+        //                onTriggered: {
+        //                    bkm.createObject().open();
+        //                }
+        //                attachedObjects: [
+        //                    ComponentDefinition {
+        //                        source: "sheet-bookmarks.qml"
+        //                        id: bkm
+        //                    }
+        //                ]
+        //            }
+        //        ]
     }
     onPopTransitionEnded: {
         page.destroy()
@@ -68,7 +69,7 @@ NavigationPane {
         }
     ]
     onCreationCompleted: {
-        webv.loadingChanged.connect(syncbookmark)
+        //        webv.loadingChanged.connect(syncbookmark)
     }
     function syncbookmark() {
         if (bookmark.exists(webv.url)) {
@@ -80,43 +81,70 @@ NavigationPane {
     Page {
         id: rootpage
         actionBarAutoHideBehavior: ActionBarAutoHideBehavior.HideOnScroll
-        ScrollView {
-            horizontalAlignment: HorizontalAlignment.Fill
-            verticalAlignment: VerticalAlignment.Fill
-            scrollViewProperties.overScrollEffectMode: OverScrollEffectMode.None
-            WebView {
-                id: webv
-                preferredHeight: Infinity
+        Container {
+            layout: DockLayout {
+
+            }
+            ScrollView {
                 horizontalAlignment: HorizontalAlignment.Fill
                 verticalAlignment: VerticalAlignment.Fill
-                settings.credentialAutoFillEnabled: true
-                settings.formAutoFillEnabled: true
-                url: "http://m.tv.sohu.com"
-                settings.userAgent: "Mozilla/5.0 (Linux; Android 4.1.1; Nexus 7 Build/JRO03S) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Safari/535.19"
-                settings.webInspectorEnabled: true
-                settings.userStyleSheetLocation: "patch.css"
-                onNavigationRequested: {
+                scrollViewProperties.overScrollEffectMode: OverScrollEffectMode.None
+                WebView {
+                    id: webv
+                    preferredHeight: Infinity
+                    horizontalAlignment: HorizontalAlignment.Fill
+                    verticalAlignment: VerticalAlignment.Fill
+                    settings.credentialAutoFillEnabled: true
+                    settings.formAutoFillEnabled: true
+                    url: "http://m.tv.sohu.com"
+                    settings.userAgent: "Mozilla/5.0 (Linux; Android 4.1.1; Nexus 7 Build/JRO03S) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Safari/535.19"
+                    settings.webInspectorEnabled: true
+                    settings.userStyleSheetLocation: "patch.css"
+                    onNavigationRequested: {
+                    }
+                }
+                attachedObjects: [
+                    LayoutUpdateHandler {
+                        onLayoutFrameChanged: {
+                            webv.preferredWidth = layoutFrame.width
+                        }
+                    }
+                ]
+                gestureHandlers: [
+                    DoubleTapHandler {
+                        onDoubleTapped: {
+                            if (actionbarhidden) {
+                                rootpage.actionBarVisibility = ChromeVisibility.Default
+                            } else {
+                                rootpage.actionBarVisibility = ChromeVisibility.Hidden
+                            }
+                            actionbarhidden = ! actionbarhidden
+                        }
+                    }
+                ]
+            }
+            TextField {
+                horizontalAlignment: HorizontalAlignment.Fill
+                verticalAlignment: VerticalAlignment.Bottom
+                id: urlbox
+                text: webv.url
+                visible: urlboxvisible
+                inputMode: TextFieldInputMode.Url
+                textFormat: TextFormat.Plain
+                input.submitKeyFocusBehavior: SubmitKeyFocusBehavior.Lose
+                input.submitKey: SubmitKey.Go
+                focusAutoShow: FocusAutoShow.None
+                input{
+                    onSubmitted: {
+                        if (text.indexOf(":")>0){
+                            webv.url = text    
+                        }else{
+                            webv.url = "http://"+text
+                        }
+                        
+                    }
                 }
             }
-            attachedObjects: [
-                LayoutUpdateHandler {
-                    onLayoutFrameChanged: {
-                        webv.preferredWidth = layoutFrame.width
-                    }
-                }
-            ]
-            gestureHandlers: [
-                DoubleTapHandler {
-                    onDoubleTapped: {
-                        if (actionbarhidden) {
-                            rootpage.actionBarVisibility = ChromeVisibility.Default
-                        } else {
-                            rootpage.actionBarVisibility = ChromeVisibility.Hidden
-                        }
-                        actionbarhidden = ! actionbarhidden
-                    }
-                }
-            ]
         }
         actions: [
             ActionItem {
@@ -140,16 +168,16 @@ NavigationPane {
                 }
                 imageSource: "asset:///img/home.png"
             },
-            ActionItem {
-                id: actionbookmark
-                title: qsTr("Bookmark")
-                imageSource: "asset:///img/star1.png"
-                ActionBar.placement: ActionBarPlacement.OnBar
-                onTriggered: {
-                    bookmark.toggle(webv.title, webv.url.toString());
-                    syncbookmark();
-                }
-            },
+            //            ActionItem {
+            //                id: actionbookmark
+            //                title: qsTr("Bookmark")
+            //                imageSource: "asset:///img/star1.png"
+            //                ActionBar.placement: ActionBarPlacement.OnBar
+            //                onTriggered: {
+            //                    bookmark.toggle(webv.title, webv.url.toString());
+            //                    syncbookmark();
+            //                }
+            //            },
             ActionItem {
                 title: qsTr("Forward")
                 ActionBar.placement: ActionBarPlacement.Default
@@ -175,12 +203,13 @@ NavigationPane {
             },
             ActionItem {
                 title: qsTr("Hide Action Bar")
-                imageSource: "asset:///img/full.png"
+                imageSource: "asset:///img/max.png"
                 ActionBar.placement: ActionBarPlacement.InOverflow
                 onTriggered: {
                     sst.show();
                     rootpage.actionBarVisibility = ChromeVisibility.Hidden
                     actionbarhidden = true;
+                    urlboxvisible = false;
                 }
                 attachedObjects: [
                     SystemToast {
@@ -202,6 +231,16 @@ NavigationPane {
                         body: qsTr("Cache cleared.")
                     }
                 ]
+                imageSource: "asset:///img/ic_delete.png"
+            },
+            ActionItem {
+                title: qsTr("URL")
+                imageSource: "asset:///img/A.png"
+                onTriggered: {
+                    urlboxvisible = !urlboxvisible;
+                }
+                ActionBar.placement: ActionBarPlacement.OnBar
+
             }
         ]
         actionBarVisibility: ChromeVisibility.Default

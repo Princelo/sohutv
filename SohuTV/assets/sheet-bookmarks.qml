@@ -12,26 +12,10 @@ Sheet {
 
             }
         ]
-        ListView {
-            id: bookmarklist
-            dataModel: ArrayDataModel {
-                id: adm
+        ScrollView {
+            Container {
+                id: content
             }
-            snapMode: SnapMode.LeadingEdge
-            horizontalAlignment: HorizontalAlignment.Fill
-            listItemComponents: ListItemComponent {
-                type: "item"
-                StandardListItem {
-                    title: ListItemData.k
-                    description: ListItemData.v
-                    textFormat: TextFormat.Plain
-                    onTouch: {
-                        navpane.navto(description);
-                        bookmarkmgr.close()
-                    }
-                }
-            }
-            verticalAlignment: VerticalAlignment.Fill
         }
         attachedObjects: [
             Storage {
@@ -42,13 +26,27 @@ Sheet {
                 }
                 onCreationCompleted: {
                     load(_app.getValue("bookmark", ""));
+                    content.removeAll();
                     for (var i = 0; i < k.length; i ++) {
-                        adm.append({
-                                k: k.value(i),
-                                v: v.value(i)
-                            });
+                        var l = line.createObject();
+                        l.title = k.value(i);
+                        l.url = v.value(i);
+                        l.id = i;
+                        l.onTrigger=function(){
+                            bookmarkmgr.parent.webv.url=url;
+                            bookmarkmgr.close();
+                        }
+                        l.onRemove=function(){
+                            sto.removeByKey(url);
+                            content.remove(this);
+                        }
+                        content.add(l);
                     }
                 }
+            },
+            ComponentDefinition {
+                id: line
+                source: "Ctrl-Listline.qml"
             }
         ]
         titleBar: TitleBar {
